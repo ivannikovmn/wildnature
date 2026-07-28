@@ -1,0 +1,9 @@
+services:
+  wildnature_db:
+    container_name: wildnature_db
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_USER=admin
+    image: postgres:17-alpine
