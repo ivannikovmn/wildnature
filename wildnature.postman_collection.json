@@ -1,0 +1,92 @@
+{
+	"info": {
+		"_postman_id": "7441beed-a44b-4391-99ed-540416943aa3",
+		"name": "wildnature",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26353099"
+	},
+	"item": [
+		{
+			"name": "TEST POST /api",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "asdgfsfhhgd",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"mikhail.ivannikov2030@gmail.com\",\r\n    \"pass\": \"123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/asd/ru?age=23&catid=3&ff=fff&rooms=201&rooms=202&rooms=203&lol=500",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"asd",
+						"ru"
+					],
+					"query": [
+						{
+							"key": "age",
+							"value": "23"
+						},
+						{
+							"key": "catid",
+							"value": "3"
+						},
+						{
+							"key": "ff",
+							"value": "fff"
+						},
+						{
+							"key": "rooms",
+							"value": "201"
+						},
+						{
+							"key": "rooms",
+							"value": "202"
+						},
+						{
+							"key": "rooms",
+							"value": "203"
+						},
+						{
+							"key": "lol",
+							"value": "500"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEST Backend",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		}
+	]
+}

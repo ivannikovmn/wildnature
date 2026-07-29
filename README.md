@@ -15,12 +15,7 @@ A platform for volunteer event registration and certificate management.
 - `frontend` — client application
 - `backend` — server application
 
-## Tech Stack
-
-Frontend:
-- 
-
-
-Backend:
-- 
-
+## Stack
+- Docker + PostgreSQL
+- Node.js + Express
+- Nodemon + Morgan + Multer
