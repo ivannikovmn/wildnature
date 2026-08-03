@@ -15,15 +15,46 @@ A platform for volunteer event registration and certificate management.
 - `frontend` — client application
 - `backend` — server application
 
-## Documentation
+## Setup
 
-- ER Diagram: https://www.figma.com/board/q4fS21cwD6nMcJ8QVx9WVN/WildNature-Database
+### Backend
 
-## Environment
+```bash
+cd backend
+npm install
+```
 
 Create `.env` based on `.env.example`.
 
-Environment variables are used for database and email configuration.
+Start PostgreSQL:
+```bash
+docker compose up -d
+```
+
+Run migrations:
+```bash
+npx sequelize-cli db:migrate
+```
+
+Run seed:
+```bash
+npx sequelize-cli db:seed --seed seedRole.js
+```
+
+### Run backend
+```bash
+npm run dev
+
+```
+### Backend URL
+
+```text
+http://localhost:3000
+```
+
+## Documentation
+
+- ER Diagram: https://www.figma.com/board/q4fS21cwD6nMcJ8QVx9WVN/WildNature-Database
 
 ## API Testing
 
