@@ -65,6 +65,7 @@ Postman collection:
 - Docker + PostgreSQL
 - Node.js + Express
 - Sequelize ORM
+- Passport + JWT
 - Nodemailer
 - Dotenv
 - Nodemon + Morgan + Multer
