@@ -24,7 +24,7 @@
 								},
 								{
 									"key": "code",
-									"value": "wildnature1785426551029",
+									"value": "WildNature1786100901315",
 									"type": "text"
 								}
 							]
@@ -58,7 +58,7 @@
 								},
 								{
 									"key": "",
-									"value": "programmist2030@bk.ru",
+									"value": "",
 									"type": "text",
 									"disabled": true
 								}
@@ -73,6 +73,61 @@
 								"api",
 								"auth",
 								"sendmail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "resume",
+			"item": [
+				{
+					"name": "createResume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							},
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"first_name\": \"Mikhail\", \r\n  \"last_name\": \"Ivannikov\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/resume",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"resume"
 							]
 						}
 					},
@@ -108,6 +163,10 @@
 			"key": "END_POINT",
 			"value": "http://localhost:3000",
 			"type": "string"
+		},
+		{
+			"key": "AUTH_TOKEN",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJsb2NhbF9ob3N0QG1haWwucnUiLCJmdWxsX25hbWUiOm51bGwsInBob25lIjpudWxsLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiZW1wbG95ZWUifSwiaWF0IjoxNzg2MTAwOTI1LCJleHAiOjE4MTc2MzY5MjV9.zQq-oPq-uDW-Qy1_ZjNQS2mi3q-b-APqg5Kc0jPf9jw"
 		}
 	]
 }
