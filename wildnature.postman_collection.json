@@ -97,23 +97,133 @@
 							]
 						},
 						"method": "POST",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							},
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": "{\r\n  \"first_name\": \"Mikhail\", \r\n  \"last_name\": \"Ivannikov\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/resume",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getMyResumes",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/resume",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"resume"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getResume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/resume/5",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"resume",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "removeResumeById",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/resume/4",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"resume",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editResume",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 5,\r\n  \"first_name\": \"Mikhaill\", \r\n  \"last_name\": \"Ivannikov\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"

@@ -30,6 +30,7 @@ Start PostgreSQL:
 ```bash
 docker compose up -d
 ```
+Make sure port 5432 is available for the Docker PostgreSQL container.
 
 Run migrations:
 ```bash
