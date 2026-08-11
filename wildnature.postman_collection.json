@@ -10,6 +10,41 @@
 			"name": "auth",
 			"item": [
 				{
+					"name": "sendVerificationEmail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "email",
+									"value": "local_host@mail.ru",
+									"type": "text"
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/auth/sendmail",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"sendmail"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "verifyCode",
 					"request": {
 						"method": "POST",
@@ -44,7 +79,74 @@
 					"response": []
 				},
 				{
-					"name": "sendVerificationEmail",
+					"name": "signUpManager",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "manager@example.com",
+									"type": "text"
+								},
+								{
+									"key": "full_name",
+									"value": "Mikhail Ivannikov",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "password2",
+									"value": "123",
+									"type": "text"
+								},
+								{
+									"key": "company_name",
+									"value": "Wild Nature Volunteers",
+									"type": "text"
+								},
+								{
+									"key": "company_description",
+									"value": "Environmental Protection",
+									"type": "text"
+								},
+								{
+									"key": "company_address",
+									"value": "Almaty, Kokshoky Microdistrict, 1A",
+									"type": "text"
+								},
+								{
+									"key": "company_logo",
+									"type": "file",
+									"src": "/home/localadmin/Загрузки/WildNature_logo.jpeg"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/auth/signup",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"signup"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "loginManager",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -53,26 +155,25 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "local_host@mail.ru",
+									"value": "manager@example.com",
 									"type": "text"
 								},
 								{
-									"key": "",
-									"value": "",
-									"type": "text",
-									"disabled": true
+									"key": "password",
+									"value": "123",
+									"type": "text"
 								}
 							]
 						},
 						"url": {
-							"raw": "{{END_POINT}}/api/auth/sendmail",
+							"raw": "{{END_POINT}}/api/auth/login",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
 								"auth",
-								"sendmail"
+								"login"
 							]
 						}
 					},

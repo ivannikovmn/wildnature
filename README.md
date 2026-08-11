@@ -68,6 +68,8 @@ Postman collection:
 - Sequelize ORM
 - Passport + JWT
 - Nodemailer
+- Bcrypt
+- Multer
 - Dotenv
 - Nodemon + Morgan + Multer
 
