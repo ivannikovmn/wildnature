@@ -1,11 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../../config/db') //Импортируйте настройки подключения к базе данных
-const City = require('../../region/City')
 const User = require('../../auth/User')
-const Specialization = require('../../specializations/models/Specialization');
 const Company = require('../../auth/Company');
-const Experience = require('./Experience');
-const EmploymentType = require('../../employment-type/EmploymentType')
 
 const Vacancy = sequelize.define('Vacancy', {
   name: {
@@ -35,6 +31,6 @@ const Vacancy = sequelize.define('Vacancy', {
 });
 
 Vacancy.belongsTo(User, { foreignKey: 'userId' }); // Определяем внешний ключ 'roleId'
-Vacancy.belongsTo(Company, { foreignKey: 'companyId', as: 'company'  }); // Определяем внешний ключ 'roleId'
+Vacancy.belongsTo(Company, { foreignKey: 'companyId', as: 'company' })
 
 module.exports = Vacancy;
