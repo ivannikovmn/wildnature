@@ -3,16 +3,19 @@ const Company = require('../auth/Company')
 
 const createVacancy = async (req, res) => {
     const vacancy = await Vacancy.create({
-            name: req.body.name,
-            about_company: req.body.about_company,
-            description: req.body.description,
-            event_date: req.body.event_date,
-            address: req.body.address,
-            branding_photo: req.body.branding_photo,            
-            userId: req.user.id,
-            companyId: req.user.companyId,
-    })
-    res.status(200).send(vacancy)
+        name: req.body.name,
+        about_company: req.body.about_company,
+        description: req.body.description,
+        event_date: req.body.event_date,
+        address: req.body.address,
+        branding_photo: req.file
+            ? '/vacancy/' + req.file.filename
+            : null,
+        userId: req.user.id,
+        companyId: req.user.companyId,
+    });
+
+    res.status(200).send(vacancy);
 }
 
 const getMyVacancies = async (req, res) => {

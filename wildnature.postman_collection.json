@@ -412,8 +412,8 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "urlencoded",
-							"urlencoded": [
+							"mode": "formdata",
+							"formdata": [
 								{
 									"key": "name",
 									"value": "КАК ХОДИТЬ В ГОРЫ БЕЗ ГЕРОИЗМА И СТРАДАНИЙ?",
@@ -441,8 +441,8 @@
 								},
 								{
 									"key": "branding_photo",
-									"value": "",
-									"type": "text"
+									"type": "file",
+									"src": "/home/localadmin/Загрузки/Screenshot from 2026-08-17 18-58-24.png"
 								}
 							]
 						},
