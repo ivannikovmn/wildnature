@@ -350,6 +350,35 @@
 			"name": "vacancy",
 			"item": [
 				{
+					"name": "deleteVacancy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/vacancy/8",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"vacancy",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "getVacancyById",
 					"request": {
 						"method": "GET",
@@ -417,6 +446,74 @@
 								{
 									"key": "name",
 									"value": "КАК ХОДИТЬ В ГОРЫ БЕЗ ГЕРОИЗМА И СТРАДАНИЙ?",
+									"type": "text"
+								},
+								{
+									"key": "about_company",
+									"value": "Михаил Нартов — инструктор альпинизма секции «Буревестник», один из основателей школы «Тамыр», представитель WNV в Караганде. Человек с огромным горным опытом, который умеет объяснять сложные вещи простым языком.",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "Лето — идеальное время для горных походов. Но согласитесь, иногда вместо удовольствия от видов мы получаем жуткую усталость, боль в коленях и клятвенные обещания «больше никогда сюда не возвращаться»",
+									"type": "text"
+								},
+								{
+									"key": "event_date",
+									"value": "2026-08-19T10:30:00",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "Университет КИМЭП, Валиханов-билдинг (здание Валиханова), зал №112.",
+									"type": "text"
+								},
+								{
+									"key": "branding_photo",
+									"type": "file",
+									"src": "/home/localadmin/Загрузки/Screenshot from 2026-08-17 18-58-24.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/vacancy",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"vacancy"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "editVacancy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "id",
+									"value": "9",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "++КАК ХОДИТЬ В ГОРЫ БЕЗ ГЕРОИЗМА И СТРАДАНИЙ?",
 									"type": "text"
 								},
 								{
