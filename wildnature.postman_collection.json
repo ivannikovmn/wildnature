@@ -59,7 +59,7 @@
 								},
 								{
 									"key": "code",
-									"value": "WildNature1786100901315",
+									"value": "WildNature1787149949726",
 									"type": "text"
 								}
 							]
@@ -384,14 +384,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/vacancy/4",
+							"raw": "{{END_POINT}}/api/vacancy/9",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
 								"vacancy",
-								"4"
+								"9"
 							]
 						}
 					},
@@ -557,6 +557,112 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "applies",
+			"item": [
+				{
+					"name": "deleteApply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/2",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getEmployeeAplies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/employee",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createApply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "resumeId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "vacancyId",
+									"value": "9",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/applies",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies"
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		}
 	],
 	"event": [
@@ -589,7 +695,7 @@
 		},
 		{
 			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJtYW5hZ2VyQGV4YW1wbGUuY29tIiwiZnVsbF9uYW1lIjoiTWlraGFpbCBJdmFubmlrb3YiLCJwaG9uZSI6bnVsbCwicm9sZSI6eyJpZCI6MiwibmFtZSI6Im1hbmFnZXIifSwiaWF0IjoxNzg2NzI1MDc0LCJleHAiOjE4MTgyNjEwNzR9.WfCPQcZ_RAeWjuO_bq1ZQ0QvBqSSN9vLppSLgy-ydb4"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2NhbF9ob3N0QG1haWwucnUiLCJmdWxsX25hbWUiOm51bGwsInBob25lIjpudWxsLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiZW1wbG95ZWUifSwiaWF0IjoxNzg3MTQ5OTgwLCJleHAiOjE4MTg2ODU5ODB9.U36_ugNwfhNrnORfOqmmfdyYBM9etgbtkCKJ4OEZlL8"
 		}
 	]
 }
