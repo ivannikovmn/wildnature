@@ -59,7 +59,7 @@
 								},
 								{
 									"key": "code",
-									"value": "WildNature1787149949726",
+									"value": "WildNature1787215168093",
 									"type": "text"
 								}
 							]
@@ -350,82 +350,6 @@
 			"name": "vacancy",
 			"item": [
 				{
-					"name": "deleteVacancy",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{END_POINT}}/api/vacancy/8",
-							"host": [
-								"{{END_POINT}}"
-							],
-							"path": [
-								"api",
-								"vacancy",
-								"8"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getVacancyById",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{END_POINT}}/api/vacancy/9",
-							"host": [
-								"{{END_POINT}}"
-							],
-							"path": [
-								"api",
-								"vacancy",
-								"9"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "getMyVacancies",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "{{END_POINT}}/api/vacancy",
-							"host": [
-								"{{END_POINT}}"
-							],
-							"path": [
-								"api",
-								"vacancy"
-							]
-						}
-					},
-					"response": []
-				},
-				{
 					"name": "createVacancy",
 					"request": {
 						"auth": {
@@ -555,43 +479,9 @@
 						}
 					},
 					"response": []
-				}
-			]
-		},
-		{
-			"name": "applies",
-			"item": [
-				{
-					"name": "deleteApply",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{AUTH_TOKEN}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "{{END_POINT}}/api/applies/2",
-							"host": [
-								"{{END_POINT}}"
-							],
-							"path": [
-								"api",
-								"applies",
-								"2"
-							]
-						}
-					},
-					"response": []
 				},
 				{
-					"name": "getEmployeeAplies",
+					"name": "getMyVacancies",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -606,19 +496,71 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/applies/employee",
+							"raw": "{{END_POINT}}/api/vacancy",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
-								"applies",
-								"employee"
+								"vacancy"
 							]
 						}
 					},
 					"response": []
 				},
+				{
+					"name": "getVacancyById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/vacancy/9",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"vacancy",
+								"9"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteVacancy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/vacancy/8",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"vacancy",
+								"8"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "applies",
+			"item": [
 				{
 					"name": "createApply",
 					"request": {
@@ -661,6 +603,181 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getEmployeeAplies",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/employee",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteApply",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/1",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "acceptEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "applyId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/accept/employee",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"accept",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "declineEmployee",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "applyId",
+									"value": "2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/decline/employee",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"decline",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getAppliesByVacancyId",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{AUTH_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/api/applies/vacancy/9",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"api",
+								"applies",
+								"vacancy",
+								"9"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "DECLINED",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -695,7 +812,7 @@
 		},
 		{
 			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2NhbF9ob3N0QG1haWwucnUiLCJmdWxsX25hbWUiOm51bGwsInBob25lIjpudWxsLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiZW1wbG95ZWUifSwiaWF0IjoxNzg3MTQ5OTgwLCJleHAiOjE4MTg2ODU5ODB9.U36_ugNwfhNrnORfOqmmfdyYBM9etgbtkCKJ4OEZlL8"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJxYXNocWFpLjIwMDhAbWFpbC5ydSIsImZ1bGxfbmFtZSI6Ik1pa2hhaWwgSXZhbm5pa292IiwicGhvbmUiOm51bGwsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJtYW5hZ2VyIn0sImlhdCI6MTc4NzIxNTM5MywiZXhwIjoxODE4NzUxMzkzfQ.ab4zxTXU68EdQv_HEc6lOobmOMZWd-8XFtYdwn4HXYk"
 		}
 	]
 }
