@@ -59,7 +59,7 @@
 								},
 								{
 									"key": "code",
-									"value": "WildNature1787215168093",
+									"value": "WildNature1787222097912",
 									"type": "text"
 								}
 							]
@@ -778,6 +778,25 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "getCertificate",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{END_POINT}}/certificate/3/9",
+							"host": [
+								"{{END_POINT}}"
+							],
+							"path": [
+								"certificate",
+								"3",
+								"9"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}
@@ -812,7 +831,7 @@
 		},
 		{
 			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJxYXNocWFpLjIwMDhAbWFpbC5ydSIsImZ1bGxfbmFtZSI6Ik1pa2hhaWwgSXZhbm5pa292IiwicGhvbmUiOm51bGwsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJtYW5hZ2VyIn0sImlhdCI6MTc4NzIxNTM5MywiZXhwIjoxODE4NzUxMzkzfQ.ab4zxTXU68EdQv_HEc6lOobmOMZWd-8XFtYdwn4HXYk"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2NhbF9ob3N0QG1haWwucnUiLCJmdWxsX25hbWUiOm51bGwsInBob25lIjpudWxsLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiZW1wbG95ZWUifSwiaWF0IjoxNzg3MjIyMTM5LCJleHAiOjE4MTg3NTgxMzl9.mubwhKpsMgMFfx_G0cTPjcsb9-5Wt_YeMaemqoFVmmo"
 		}
 	]
 }

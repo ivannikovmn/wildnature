@@ -1,0 +1,62 @@
+const Apply = require('../applies/Apply')
+const Resume = require('../resume/models/Resume')
+const Vacancy = require('../vacancy/models/Vacancy')
+const { INVITATION } = require('../applies/utils')
+
+const getCertificate = async (req, res) => {
+    try {
+        const { userId, vacancyId } = req.params
+
+        const resume = await Resume.findOne({
+            where: {
+                userId
+            }
+        })
+
+        if (!resume) {
+            return res.status(404).send({
+                message: 'Resume not found'
+            })
+        }
+
+        const apply = await Apply.findOne({
+            where: {
+                resumeId: resume.id,
+                vacancyId,
+                status: INVITATION
+            }
+        })
+
+        if (!apply) {
+            return res.status(404).send({
+                message: 'Certificate is not available'
+            })
+        }
+
+        const vacancy = await Vacancy.findByPk(vacancyId)
+
+        if (!vacancy) {
+            return res.status(404).send({
+                message: 'Vacancy not found'
+            })
+        }
+
+        res.status(200).send({
+            participant: `${resume.first_name} ${resume.last_name}`,
+            event: vacancy.name,
+            about_company: vacancy.about_company,
+            address: vacancy.address,
+            date: vacancy.event_date
+        })
+
+    } catch (error) {
+        console.error(error)
+        res.status(500).send({
+            message: error.message
+        })
+    }
+}
+
+module.exports = {
+    getCertificate
+}

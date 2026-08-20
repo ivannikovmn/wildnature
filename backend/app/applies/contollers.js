@@ -84,11 +84,16 @@ const acceptEmployee = async (req, res) => {
         const resume = await Resume.findByPk(apply.resumeId)
         const user = await User.findByPk(resume.userId)
         const company = await Company.findByPk(req.user.companyId)
+        const certificateUrl =`${process.env.APP_URL}/certificate/${resume.userId}/${vacancy.id}`
 
-        sendEmail(user.email, `Вы были приглашены на мероприятие ${vacancy.name}`, `
-            Компания: ${company.name}, пригласила вас на мероприятие ${vacancy.name}, приходите по адресу ${company.address}
-            или свяжитесь с Менеджером ${req.user.full_name}
-        `)   
+        sendEmail(user.email, `Вы были на мероприятии ${vacancy.name}`, `
+        Компания: ${company.name}
+        Адрес: ${company.address}
+        Спикер: ${req.user.full_name}
+
+        Ваш сертификат:
+        ${certificateUrl}
+        `) 
         res.status(200).end()
     } catch(error){
         res.status(500).send(error)
@@ -113,8 +118,8 @@ const declineEmployee = async (req, res) => {
         const user = await User.findByPk(resume.userId)
         const company = await Company.findByPk(req.user.companyId)
 
-        sendEmail(user.email, `Отказ заявки на мероприятие ${vacancy.name}`, `
-            Компания: ${company.name}, к сожалению ваше участие не подходит для мероприятия ${vacancy.name}
+        sendEmail(user.email, `К сожалению мы вас не увидели на мероприятии ${vacancy.name}`, `
+            Компании: ${company.name}
 
         `)     
         res.status(200).end()
