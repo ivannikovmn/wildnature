@@ -1,7 +1,7 @@
 const Apply = require('../applies/Apply')
 const Resume = require('../resume/models/Resume')
 const Vacancy = require('../vacancy/models/Vacancy')
-const { INVITATION } = require('../applies/utils')
+const { ATTENDED } = require('../applies/utils')
 
 const getCertificate = async (req, res) => {
     try {
@@ -23,7 +23,7 @@ const getCertificate = async (req, res) => {
             where: {
                 resumeId: resume.id,
                 vacancyId,
-                status: INVITATION
+                status: ATTENDED
             }
         })
 

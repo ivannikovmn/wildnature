@@ -1,5 +1,5 @@
 const Apply = require('./Apply')
-const {NEW, DECLINED, INVITATION} = require('./utils')
+const {NEW, DECLINED, ATTENDED} = require('./utils')
 const sendEmail = require('../utils/sendMail')
 const Vacancy = require('../vacancy/models/Vacancy')
 const Resume = require('../resume/models/Resume')
@@ -72,7 +72,7 @@ const acceptEmployee = async (req, res) => {
     try{
         await Apply.update(
             {
-                status: INVITATION
+                status: ATTENDED
             },
             {
                 where: {
@@ -134,7 +134,7 @@ const getVacancyApplies = async (req, res) => {
             vacancyId: req.params.id
         }
 
-        if(req.query.status && (req.query.status === NEW || req.query.status === INVITATION || req.query.status === DECLINED)){
+        if(req.query.status && (req.query.status === NEW || req.query.status === ATTENDED || req.query.status === DECLINED)){
             options.status = req.query.status
         }
 

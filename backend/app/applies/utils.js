@@ -1,9 +1,9 @@
 const NEW = "NEW";
 const DECLINED = "DECLINED";
-const INVITATION = "INVITATION";
+const ATTENDED = "ATTENDED";
 
 module.exports = {
     NEW,
     DECLINED,
-    INVITATION 
+    ATTENDED 
 }
