@@ -59,7 +59,7 @@
 								},
 								{
 									"key": "code",
-									"value": "WildNature1787222097912",
+									"value": "WildNature1787579219989",
 									"type": "text"
 								}
 							]
@@ -586,7 +586,7 @@
 								},
 								{
 									"key": "vacancyId",
-									"value": "9",
+									"value": "3",
 									"type": "text"
 								}
 							]
@@ -663,7 +663,7 @@
 					"response": []
 				},
 				{
-					"name": "acceptEmployee",
+					"name": "attendedEmployee",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -682,7 +682,7 @@
 							"urlencoded": [
 								{
 									"key": "applyId",
-									"value": "2",
+									"value": "3",
 									"type": "text"
 								}
 							]
@@ -758,7 +758,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/applies/vacancy/9",
+							"raw": "{{END_POINT}}/api/applies/vacancy/2",
 							"host": [
 								"{{END_POINT}}"
 							],
@@ -766,7 +766,7 @@
 								"api",
 								"applies",
 								"vacancy",
-								"9"
+								"2"
 							],
 							"query": [
 								{
@@ -831,7 +831,7 @@
 		},
 		{
 			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsb2NhbF9ob3N0QG1haWwucnUiLCJmdWxsX25hbWUiOm51bGwsInBob25lIjpudWxsLCJyb2xlIjp7ImlkIjoxLCJuYW1lIjoiZW1wbG95ZWUifSwiaWF0IjoxNzg3MjIyMTM5LCJleHAiOjE4MTg3NTgxMzl9.mubwhKpsMgMFfx_G0cTPjcsb9-5Wt_YeMaemqoFVmmo"
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJxYXNocWFpLjIwMDhAbWFpbC5ydSIsImZ1bGxfbmFtZSI6Ik1pa2hhaWwgSXZhbm5pa292IiwicGhvbmUiOm51bGwsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJtYW5hZ2VyIn0sImlhdCI6MTc4NzU4OTk2OCwiZXhwIjoxODE5MTI1OTY4fQ.Id1s0UpQvDT9aQBp3uTUZRPIQ9eU9g826JgQvhSDQvI"
 		}
 	]
 }

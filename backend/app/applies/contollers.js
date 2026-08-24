@@ -88,8 +88,7 @@ const acceptEmployee = async (req, res) => {
 
         sendEmail(user.email, `Вы были на мероприятии ${vacancy.name}`, `
         Компания: ${company.name}
-        Адрес: ${company.address}
-        Спикер: ${req.user.full_name}
+        Адрес: ${company.address}          
 
         Ваш сертификат:
         ${certificateUrl}

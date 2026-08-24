@@ -2,6 +2,7 @@ services:
   wildnature_db:
     container_name: wildnature_db
     image: postgres:17-alpine
+    restart: unless-stopped
     ports:
       - "5434:5432"
     environment:
