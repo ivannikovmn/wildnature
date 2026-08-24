@@ -2,10 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const logger = require('morgan');
 const passport = require('passport');
+const cors = require("cors")
 
 const app = express(); 
 
 app.use(logger('dev'))
+app.use(cors())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
 app.use(express.static(__dirname + "/public"))

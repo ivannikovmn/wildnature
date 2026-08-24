@@ -43,10 +43,20 @@ npx sequelize-cli db:seed --seed seedRole.js
 ```
 
 ### Run backend
+
+Development:
+
 ```bash
 npm run dev
 
 ```
+
+Production:
+```bash
+npm run prod
+
+```
+
 ### Backend URL
 
 ```text
@@ -64,7 +74,7 @@ Postman collection:
 
 ## Stack
 - Docker + PostgreSQL
-- Node.js + Express
+- Node.js + Express (REST API with CORS)
 - Sequelize ORM
 - Passport + JWT
 - Nodemailer
