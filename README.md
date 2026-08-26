@@ -42,22 +42,39 @@ Run seed:
 npx sequelize-cli db:seed --seed seedRole.js
 ```
 
+### Frontend
+
+```bash
+cd frontend
+npm install
+```
+
 ### Run backend
 
 Development:
 
 ```bash
 npm run dev
-
 ```
 
 Production:
 ```bash
 npm run prod
+```
 
+### Run frontend
+
+```bash
+npm run dev
 ```
 
 ### Backend URL
+
+```text
+http://localhost:3000
+```
+
+### Frontend URL
 
 ```text
 http://localhost:3000
@@ -75,11 +92,11 @@ Postman collection:
 ## Stack
 - Docker + PostgreSQL
 - Node.js + Express (REST API with CORS)
+- Next.js + React
 - Sequelize ORM
 - Passport + JWT
 - Nodemailer
 - Bcrypt
 - Multer
 - Dotenv
-- Nodemon + Morgan + Multer
-
+- Nodemon + Morgan
