@@ -1,10 +1,11 @@
-import styles from './page.module.css'
-import Test from '../components/test'
+
+import Header from '../components/header'
+import UserLogin from '../components/auth/user'
 export default function Home() {
-  return (    
-    <main className={styles.main}>
-      Hello!
-      <Test />      
+  return (   
+    <main>
+      <Header />
+      <UserLogin/>   
     </main>
   )
 }
