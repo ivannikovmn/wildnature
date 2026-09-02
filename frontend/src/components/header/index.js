@@ -1,25 +1,28 @@
 import Image from 'next/image'
 import logo from '../../app/images/logo.png'
+import Link from 'next/link'
 
 export default function Header() {
     return (
         <header className="header">
             <div className="container">
                 <div className="header-inner">
-                    <div>
-                        {/* <img src="/images/logo.png" />                      */}
-                        <Image src={logo} alt="WildNature Volunteers" />                           
-                        <a>Менеджерам</a>
-                        {/* <a>Помощь</a> */}
+                    <div>                       
+                        <Link href="/">
+                            {/* <img src="/images/logo.png" />*/}
+                            <Image src={logo} alt="WildNature Volunteers" />                               
+                        </Link>                                                  
+                        {/* <a>Менеджерам<</a> */}
+                        <Link href="/resumes">Мои резюме</Link>                                                
                     </div>
 
                     <div>
-                        <button className="header-button header-button--green">
-                            Создать резюме
-                        </button>
-                        <button className="header-button">
+                        <Link className="header-button header-button--green" href="/create-resume">
+                            Создать резюме                                                    
+                        </Link>   
+                        <Link className="header-button" href="/login">
                             Войти
-                        </button>
+                        </Link>      
                     </div>
                 </div>
             </div>
