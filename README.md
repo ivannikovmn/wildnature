@@ -93,6 +93,7 @@ Postman collection:
 - Docker + PostgreSQL
 - Node.js + Express (REST API with CORS)
 - Next.js + React
+- Redux Toolkit
 - Axios
 - Sequelize ORM
 - Passport + JWT

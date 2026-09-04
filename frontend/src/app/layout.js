@@ -1,4 +1,5 @@
 import "./globals.css";
+import ReduxProvider from './store/provider'
 
 export const metadata = {
   title: "WildNature Volunteers",
@@ -8,7 +9,11 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ru">
-      <body>{children}</body>
+      <body>
+        <ReduxProvider>
+          {children}
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
