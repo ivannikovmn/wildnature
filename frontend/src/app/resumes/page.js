@@ -1,26 +1,19 @@
+'use client'
 import Header from '@/components/header'
 import MyResumes from '@/components/myresumes'
+import { useEffect } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
+import { getMyResumes } from '@/app/store/slices/resumeSlice';
+
 export default function ResumePage() {  
-  const resumes = [{
-    first_name: "Mikhail",
-    last_name: "Ivannikov",
-    createdAt: "31.08.2026",
-    stats: {
-      views: 0,
-      applies: 7,
-      show: 0
-    }
-  }, 
-  {
-    first_name: "Михаил",
-    last_name: "Иванников",
-    createdAt: "01.09.2026",
-    stats: {
-      views: 100,
-      applies: 2,
-      show: 100
-    }
-  }]
+  const dispatch = useDispatch();
+  const resumes = useSelector((state) => state.resume.resumes)
+  // console.log("here", resumes);
+  const didMount = () => {
+    dispatch(getMyResumes())
+  }
+    useEffect(didMount, [])
   return (
     <main>
       <Header />

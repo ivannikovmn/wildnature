@@ -2,15 +2,45 @@ import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { jwtDecode } from "jwt-decode"
 import { END_POINT } from '@/config/end-point'
+
+const token = typeof window !== "undefined"
+  ? localStorage.getItem("token")
+  : null
+
+let initialState = {
+  isAuth: false,
+  currentUser: null,
+  tokenExt: 0  
+}
+
+if(token) {
+  let decodeToken = jwtDecode(token)
+  if(decodeToken.exp * 1000 > Date.now() ) {
+    initialState = {
+      isAuth: true,
+      currentUser: {
+        id: decodeToken.id,
+        email: decodeToken.email,
+        full_name: decodeToken.full_name,
+        phone: decodeToken.phone,
+        role: decodeToken.role,
+      },
+      tokenExt: decodeToken.exp 
+    }   
+    console.log(initialState);
+    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`
+  } else {
+    localStorage.removeItem("token")
+  }
+}
+
 export const authSlice = createSlice({
   name: 'auth',
-  initialState: {
-    isAuth: false,
-    currentUser: null,
-    tokenExt: 0
-  },
+  initialState,
   reducers: {
     authorize: (state, action) => {
+    localStorage.setItem("token", action.payload.token)
+    axios.defaults.headers.common['Authorization'] = `Bearer ${action.payload.token}`
     const decoded = jwtDecode(action.payload.token)
       state.currentUser = {
         id: decoded.id,
@@ -25,6 +55,9 @@ export const authSlice = createSlice({
     },
     logOut: (state) => {
       state.isAuth = false
+      state.currentUser = null;
+      state.tokenExt = 0;
+      localStorage.removeItem("token")
     }
   },
 })
