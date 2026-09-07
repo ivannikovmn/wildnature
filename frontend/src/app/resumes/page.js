@@ -5,11 +5,11 @@ import { useEffect } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { getMyResumes } from '@/app/store/slices/resumeSlice';
+import Link from 'next/link'
 
 export default function ResumePage() {  
   const dispatch = useDispatch();
-  const resumes = useSelector((state) => state.resume.resumes)
-  // console.log("here", resumes);
+  const resumes = useSelector((state) => state.resume.resumes)  
   const didMount = () => {
     dispatch(getMyResumes())
   }
@@ -20,7 +20,7 @@ export default function ResumePage() {
       <div className='container'>
         <div className='flex flex-ai-c flex-js-sb ptb7'>
             <h1>Мои Резюме</h1>
-            <button className='button button-secondary-bordered'>Создать резюме</button>
+            <Link className='button button-secondary-bordered' href="/create-resume">Создать резюме</Link>
         </div>   
         
         <MyResumes resumes={resumes}/>  

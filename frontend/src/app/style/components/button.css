@@ -4,8 +4,10 @@
     padding: 0 20px;
     outline: none;
     border: none;
-    cursor: pointer;
-    /* line-height: 40px; */
+    cursor: pointer;    
+    text-decoration: none;
+    display: flex;
+    align-items: center;    
 }
 
 .button-primary {
