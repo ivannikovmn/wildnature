@@ -2,7 +2,6 @@
 
 import Header from '@/components/header'
 import Input from '@/components/input';
-// import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';

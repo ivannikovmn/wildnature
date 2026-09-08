@@ -25,7 +25,8 @@ export default function Header() {
                             <Image src={logo} alt="WildNature Volunteers" />                               
                         </Link>                                                  
                         {/* <a>Менеджерам<</a> */}
-                        <Link href="/resumes">Мои резюме</Link>                                                
+                        <Link href="/resumes">Мои резюме</Link>   
+                        <a href='https://www.linkedin.com/in/-mikhail-ivannikov/'>Помощь</a>                                             
                     </div>
 
                     <div>
