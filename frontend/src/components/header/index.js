@@ -14,25 +14,40 @@ export default function Header() {
         setMounted(true)
     }, [])    
 
-    const isAuth = useSelector((state) => state.auth.isAuth)    
+    const isAuth = useSelector((state) => state.auth.isAuth)   
+    const currentUser = useSelector((state) => state.auth.currentUser)
+    console.log(currentUser); 
     return (
         <header className="header">
             <div className="container">
                 <div className="header-inner">
                     <div>                       
-                        <Link href="/">
-                            {/* <img src="/images/logo.png" />*/}
+                        <Link href="/">                            
                             <Image src={logo} alt="WildNature Volunteers" />                               
-                        </Link>                                                  
-                        {/* <a>Менеджерам<</a> */}
-                        <Link href="/resumes">Мои резюме</Link>   
-                        <a href='https://www.linkedin.com/in/-mikhail-ivannikov/'>Помощь</a>                                             
+                        </Link>                                                                          
+                        {mounted && currentUser && currentUser.role && currentUser.role.name === "manager" && (
+                            <Link href="/vacancy">Мои мероприятия</Link>
+                        )}
+
+                        {mounted && currentUser && currentUser.role && currentUser.role.name !== "manager" && (
+                            <Link href="/resumes">Мои резюме</Link>
+                        )}
+
+                        <a href='https://www.linkedin.com/in/-mikhail-ivannikov/'>Помощь</a>                                            
                     </div>
 
-                    <div>
-                        <Link className="header-button header-button--green" href="/create-resume">
-                            Создать резюме                                                    
-                        </Link>   
+                    <div>                        
+                        {mounted && currentUser && currentUser.role && currentUser.role.name === "manager" && (
+                            <Link className="header-button header-button--green" href="/create-vacancy">
+                                Создать мероприятие
+                            </Link>
+                        )}
+
+                        {mounted && currentUser && currentUser.role && currentUser.role.name !== "manager" && (
+                            <Link className="header-button header-button--green" href="/create-resume">
+                                Создать резюме
+                            </Link>
+                        )}
                         {mounted && !isAuth && (
                             <Link className="header-button" href="/login">
                                 Войти
