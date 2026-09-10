@@ -42,51 +42,48 @@ export const getMyVacancies = () => async (dispatch) => {
     
 }
 
-// export const getResumeById = (id) => async (dispatch) => {
-    
-//   try {    
-//       const res = await axios.get(`${END_POINT}/api/resume/${id}`);
-//       console.log(res.data);
-//       dispatch(setResume({resume: res.data}))        
-//   } catch(e) {
-//       alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-//   }
-  
-// }
+export const createVacancy = (sendData, router) => async (dispatch) => {
+    try {
+        const fd = new FormData()
 
-// // export const createResume = (sendData) => async (dispatch) => {
-// export const createResume = (sendData, router) => async (dispatch) => {  
-//     try{      
-//         const res = await axios.post(`${END_POINT}/api/resume`, sendData);
-//         router.push("/resumes")
-//         // console.log(res.data);
+        fd.append("name", sendData.name)
+        fd.append("about_company", sendData.about_company)
+        fd.append("description", sendData.description)
+        fd.append("event_date", sendData.event_date)
+        fd.append("address", sendData.address)
 
-//         dispatch(uppendResume({newresume: res.data}))        
-//     }catch(e){
-//       console.log(e);
-//         alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-//     }  
-// }
+        if (sendData.branding_photo) {
+            fd.append("branding_photo", sendData.branding_photo)
+        }
 
-// export const editResume = (sendData, router) => async (dispatch) => {  
-//   try{      
-//       const res = await axios.put(`${END_POINT}/api/resume`, sendData);
-//       router.push("/resumes")      
-//   }catch(e){
-//     console.log(e);
-//       alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-//   }  
-// }
+        const res = await axios.post(`${END_POINT}/api/vacancy`, fd)
 
-// export const deleteResume = (id) => async (dispatch) => {  
-//   try{      
-//       const res = await axios.delete(`${END_POINT}/api/resume/${id}`); 
-//       dispatch(handleDeleteResume(id))
-//   }catch(e){
-//     console.log(e);
-//       alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-//   }  
-// }
+        router.push("/vacancy")
+    } catch(e) {
+        console.log(e)
+        alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+    }
+}
+
+export const editVacancy = (sendData, router) => async (dispatch) => {  
+  try{      
+      const res = await axios.put(`${END_POINT}/api/vacancy`, sendData);
+      router.push("/vacancy")      
+  }catch(e){
+    console.log(e);
+      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }  
+}
+
+export const deleteVacancy = (id) => async (dispatch) => {  
+  try{      
+      const res = await axios.delete(`${END_POINT}/api/vacancy/${id}`); 
+      dispatch(handleDeleteVacancy(id))
+  }catch(e){
+    console.log(e);
+      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }  
+}
 
 
 export default vacancySlice.reducer

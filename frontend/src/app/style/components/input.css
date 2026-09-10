@@ -5,4 +5,9 @@
     width: 100%;
     border: 1px solid #1785e5;
     outline: none;
+    
+}
+
+.textarea {
+    border: 1px solid #d4d4d4;
 }
