@@ -30,3 +30,14 @@
 .button-primary-bordered:hover {
     opacity: 0.8;
 }
+
+
+.button-secondary-bordered {
+    border: 1px solid #BCBEBF;
+    color: #303233;
+    background-color: #fafafa;
+}
+
+.button-secondary-bordered:hover {
+    opacity: 0.8;
+}

@@ -11,7 +11,7 @@ export const vacancySlice = createSlice({
     vacancy: {}
   },
   reducers: {
-    setMyVacancies: (state, action) => {
+    setVacancies: (state, action) => {
         state.vacancies = action.payload.vacancies
     },
     appendVacancy: (state, action) => {
@@ -29,17 +29,25 @@ export const vacancySlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setMyVacancies, appendVacancy, setVacancy, handleDeleteVacancy } = vacancySlice.actions
+export const { setVacancies, setVacancy, handleDeleteVacancy } = vacancySlice.actions
 
 export const getMyVacancies = () => async (dispatch) => {
     
     try{   
         const res = await axios.get(`${END_POINT}/api/vacancy`);        
-        dispatch(setMyVacancies({vacancies: res.data}))        
+        dispatch(setVacancies({vacancies: res.data}))       
     }catch(e){
         alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-    }
-    
+    }    
+}
+
+export const getVacancyById = (id) => async (dispatch) => {
+  try {    
+      const res = await axios.get(`${END_POINT}/api/vacancy/${id}`);
+      dispatch(setVacancy({vacancy: res.data}))        
+  } catch(e) {
+      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }
 }
 
 export const createVacancy = (sendData, router) => async (dispatch) => {
