@@ -7,6 +7,8 @@ import { getVacancyById } from '@/app/store/slices/vacancySlice'
 import { useParams } from 'next/navigation'
 import Image from 'next/image'
 import { END_POINT } from '@/config/end-point'
+import { getMyResumes } from '@/app/store/slices/resumeSlice'
+import { createApply, getEmployeeApplies } from '@/app/store/slices/applySlice'
 
 export default function VacancyPage() {
 
@@ -16,18 +18,41 @@ export default function VacancyPage() {
     const currentUser = useSelector(state => state.auth.currentUser)
     const [mounted, setMounted] = useState(false)
 
+    const resumes = useSelector(state => state.resume.resumes)
+    const applies = useSelector(state => state.apply.applies)
+
+    const [resumeId, setResume] = useState()
+    console.log(resumes);
+    useEffect(() => {
+    if(resumes[0]) {
+        setResume(resumes[0].id)      
+    }
+    }, [resumes])    
+
     useEffect(() => {
         setMounted(true)
     }, [])
 
   const didMount = () => {
     dispatch(getVacancyById(id))
+    dispatch(getMyResumes())
+    dispatch(getEmployeeApplies())    
   }
 
   console.log("in page", vacancy);
 
   useEffect(didMount, [])
-     
+
+  const handleApply = () => {
+    dispatch(createApply({
+      resumeId,
+      vacancyId: id
+    }))
+  }
+
+  let isApplied = applies.some(item => item.vacancyId === id * 1);
+
+  console.log(isApplied, applies);  
 
   return (
     <main>
@@ -52,16 +77,22 @@ export default function VacancyPage() {
             <h1>{vacancy.name}</h1>
             <p>{vacancy.about_company}</p>
 
-            {mounted && currentUser && currentUser.id !== vacancy.userId && (
-                <button className='button button-primary'>
-                    Участвовать
-                </button>
-            )}
+
+            {
+              mounted && currentUser && currentUser.role.name === 'employee' && (
+                <select className='input mtb4' value={resumeId} onChange={(e) => setResume(e.target.value)} style={{maxWidth: `200px`}}>
+                  {resumes.map(item =>(<option key={item.id} value={item.id}>{item.first_name} {item.last_name}</option>))}
+                </select>
+              )
+            }
+
+            {mounted && currentUser && currentUser.id !== vacancy.userId && !isApplied && <button className='button button-primary' onClick={handleApply}>Откликнуться</button>}
+            {mounted && currentUser && currentUser.id !== vacancy.userId && isApplied && <Link className='button button-primary' style={{maxWidth: `200px`}} href="/applies">Смотреть отклик</Link>}
+            
         </div>
         {vacancy.company && <p className='secondary mt7'><b>{vacancy.company.name}</b></p>}
         {vacancy.company && <p className='secondary'>{vacancy.company.description}</p>}
-
-        {/* <p className='secondary'>{vacancy.description}</p> */}
+        
         <p className='secondary' dangerouslySetInnerHTML={{ __html:vacancy.description}}></p>
 
         <p className='secondary'>Дата: {vacancy.event_date }</p>

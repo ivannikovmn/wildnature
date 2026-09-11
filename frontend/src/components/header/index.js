@@ -33,6 +33,10 @@ export default function Header() {
                             <Link href="/resumes">Мои резюме</Link>
                         )}
 
+                        {mounted && currentUser && currentUser.role && currentUser.role.name !== "manager" && (
+                             <Link href="/applies">Отклики</Link> 
+                         )}
+                         
                         <a href='https://www.linkedin.com/in/-mikhail-ivannikov/'>Помощь</a>                                            
                     </div>
 
