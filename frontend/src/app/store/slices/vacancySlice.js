@@ -38,6 +38,7 @@ export const getMyVacancies = () => async (dispatch) => {
         dispatch(setVacancies({vacancies: res.data}))       
     }catch(e){
         alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+        // alert("GET MY VACANCIES ERROR")
     }    
 }
 
@@ -47,6 +48,10 @@ export const getVacancyById = (id) => async (dispatch) => {
       dispatch(setVacancy({vacancy: res.data}))        
   } catch(e) {
       alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+    // console.log("GET VACANCY BY ID ERROR:", e)
+    // console.log("STATUS:", e.response?.status)
+    // console.log("DATA:", e.response?.data)
+    // alert("GET VACANCY BY ID ERROR")
   }
 }
 
@@ -70,6 +75,7 @@ export const createVacancy = (sendData, router) => async (dispatch) => {
     } catch(e) {
         console.log(e)
         alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+        // alert("CREATE VACANCY ERROR")
     }
 }
 

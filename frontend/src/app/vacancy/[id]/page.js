@@ -33,15 +33,46 @@ export default function VacancyPage() {
         setMounted(true)
     }, [])
 
-  const didMount = () => {
-    dispatch(getVacancyById(id))
-    dispatch(getMyResumes())
-    dispatch(getEmployeeApplies())    
-  }
+  // const didMount = () => {
+  //   dispatch(getVacancyById(id))
+  //   dispatch(getMyResumes())
+  //   dispatch(getEmployeeApplies())    
+  // }
+
+  // const didMount = () => {
+  //     dispatch(getVacancyById(id))
+
+  //     if (currentUser?.role?.name === 'employee') {
+  //         dispatch(getMyResumes())
+  //         dispatch(getEmployeeApplies())
+  //     }
+  // }  
+
+  useEffect(() => {
+      if (!currentUser) return
+
+      dispatch(getVacancyById(id))
+
+      if (currentUser.role.name === 'employee') {
+          dispatch(getMyResumes())
+          dispatch(getEmployeeApplies())
+      }
+  }, [id, currentUser])  
+    
+  useEffect(() => {
+      if (!currentUser) return
+
+      dispatch(getVacancyById(id))
+
+      if (currentUser.role.name === 'employee') {
+          dispatch(getMyResumes())
+          dispatch(getEmployeeApplies())
+      }
+  }, [id, currentUser])  
 
   console.log("in page", vacancy);
 
-  useEffect(didMount, [])
+  // useEffect(didMount, [])
 
   const handleApply = () => {
     dispatch(createApply({
