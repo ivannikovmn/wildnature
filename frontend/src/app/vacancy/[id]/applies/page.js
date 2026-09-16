@@ -33,7 +33,7 @@ export default function VacancyApplies() {
             <div className='flex flex-js-sb'>
                 <div className="list">
                     <div className={`list-item${status === "NEW"?" active": ""}`} onClick={()=>setStatus("NEW")}>Все неразобранные</div>
-                    <div className={`list-item${status === "INVITATION"?" active": ""}`} onClick={()=>setStatus("INVITATION")}>Присуствовали</div>
+                    <div className={`list-item${status === "ATTENDED"?" active": ""}`} onClick={()=>setStatus("ATTENDED")}>Присутствовали</div>
                     <div className={`list-item${status === "DECLINED"?" active": ""}`} onClick={()=>setStatus("DECLINED")}>Отказы</div>
                 </div>        
                 <Applies applies={filtredApplies} />

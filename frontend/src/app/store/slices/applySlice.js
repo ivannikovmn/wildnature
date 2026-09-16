@@ -48,7 +48,8 @@ export const getEmployeeApplies = (data) => (dispatch) => {
   }
 
 export const getVacancyApplies = (id) => (dispatch) => {
-  axios.get(`${END_POINT}/api/applies/vacancy/${id}`).then(res => {   
+  axios.get(`${END_POINT}/api/applies/vacancy/${id}`).then(res => { 
+    console.log("VACANCY APPLIES:", res.data)  
     dispatch(setApplies(res.data))      
   }).catch(e => {  
     console.log(e);
@@ -67,7 +68,7 @@ export const createApply = (data) => (dispatch) => {
 
 export const acceptApply = (applyId) => (dispatch) => {
   axios.put(`${END_POINT}/api/applies/accept/employee`, {applyId}).then(res => {   
-    dispatch(setApplyStatus({applyId, status: "INVITATION"}))
+    dispatch(setApplyStatus({applyId, status: "ATTENDED"}))
 
   }).catch(e => {  
     console.log(e);

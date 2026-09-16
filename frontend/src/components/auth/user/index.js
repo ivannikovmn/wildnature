@@ -43,8 +43,7 @@ export default function UserLogin () {
     const sec = time % 60;    
 
     return (
-        <section className="login-page">
-             {isAuth ? "True" : "False"}
+        <section className="login-page">             
                 {step === 1 && <div className="card">
                     <h1>Поиск мероприятий</h1>
                     <form>
