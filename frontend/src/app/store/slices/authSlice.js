@@ -55,10 +55,10 @@ export const authSlice = createSlice({
       state.tokenExt = decoded.exp
     },
     logOut: (state) => {
-      state.isAuth = false
-      state.currentUser = null;
-      state.tokenExt = 0;
-      localStorage.removeItem("token")
+        state.isAuth = false
+        state.currentUser = null
+        state.tokenExt = 0
+        localStorage.removeItem("token")
     },
     setError: (state, action) => {
       state.error = action.payload      
@@ -97,10 +97,8 @@ export const signUp = (data, router) => (dispatch) => {
   fd.append("company_logo", data.company_logo)     
 
   axios.post(`${END_POINT}/api/auth/signup`, fd).then(res => {
-    // console.log(res.data);
     router.push("/employer/signin")
   }).catch(e => {
-    // console.log(e.response.data);
     dispatch(setError(e.response.data))
   })
 }

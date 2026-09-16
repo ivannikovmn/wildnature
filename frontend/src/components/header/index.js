@@ -5,10 +5,13 @@ import logo from '../../app/images/logo.png'
 import Link from 'next/link'
 import { logOut } from '@/app/store/slices/authSlice'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function Header() {
     const dispatch = useDispatch()
     const [mounted, setMounted] = useState(false)
+
+    const router = useRouter()
 
     useEffect(() => {
         setMounted(true)
@@ -61,7 +64,17 @@ export default function Header() {
                         {mounted && isAuth && (
                             <a
                                 className="header-button"
-                                onClick={() => dispatch(logOut())}
+                                onClick={() => {
+                                    const role = currentUser?.role?.name
+
+                                    dispatch(logOut())
+
+                                    if (role === "employee") {
+                                        router.push("/login")
+                                    } else {
+                                        router.push("/employer/signin")
+                                    }
+                                }}
                             >
                                 Выйти
                             </a>
