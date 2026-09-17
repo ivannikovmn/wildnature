@@ -79,16 +79,29 @@ export const createVacancy = (sendData, router) => async (dispatch) => {
     }
 }
 
-export const editVacancy = (sendData, router) => async (dispatch) => {  
-  try{      
-      const res = await axios.put(`${END_POINT}/api/vacancy`, sendData);
-      router.push("/vacancy")      
-  }catch(e){
-    console.log(e);
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-  }  
-}
+export const editVacancy = (sendData, router) => async (dispatch) => {
+  try {
+    const fd = new FormData()
 
+    fd.append("id", sendData.id)
+    fd.append("name", sendData.name)
+    fd.append("about_company", sendData.about_company)
+    fd.append("description", sendData.description)
+    fd.append("event_date", sendData.event_date)
+    fd.append("address", sendData.address)
+
+    if (sendData.branding_photo) {
+      fd.append("branding_photo", sendData.branding_photo)
+    }
+
+    await axios.put(`${END_POINT}/api/vacancy`, fd)
+
+    router.push("/vacancy")
+  } catch(e) {
+    console.log(e)
+    alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+  }
+}
 export const deleteVacancy = (id) => async (dispatch) => {  
   try{      
       const res = await axios.delete(`${END_POINT}/api/vacancy/${id}`); 

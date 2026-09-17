@@ -60,19 +60,22 @@ const [branding_photo, setBrandingPhoto] = useState(null)
 
                 <fieldset className="fieldset-vertical fieldset-md">
                     <label>Расскажите про мероприятие</label>
-
-                    <div>
+                    <div className="editor-field">
                         <Editor
                             data={description}
                             onChange={setDescription}
-                        />                                              
-                    </div>
-                    
+                        />
+                    </div>                    
                 </fieldset>  
 
                 <fieldset className="fieldset-vertical fieldset-md">
-                    <label>Дата</label>
-                    <input className="input" placeholder="Введите дату" type="text" value={event_date} onChange={(e)=>setEvent_date(e.target.value)}/>
+                    <label>Дата и время</label>
+                    <input
+                        className="input"
+                        type="datetime-local"
+                        value={event_date}
+                        onChange={(e) => setEvent_date(e.target.value)}
+                    />                    
                 </fieldset>                                 
 
                 <fieldset className="fieldset-vertical">

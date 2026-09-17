@@ -9,6 +9,7 @@ import Image from 'next/image'
 import { END_POINT } from '@/config/end-point'
 import { getMyResumes } from '@/app/store/slices/resumeSlice'
 import { createApply, getEmployeeApplies, getVacancyApplies } from '@/app/store/slices/applySlice'
+import { formatDateTime } from '@/app/utils/format'
 
 export default function VacancyPage() {
 
@@ -102,7 +103,7 @@ export default function VacancyPage() {
           
           <p className='secondary' dangerouslySetInnerHTML={{ __html:vacancy.description}}></p>
 
-          <p className='secondary'>Дата: {vacancy.event_date }</p>
+          <p className='secondary'>Дата: {formatDateTime(vacancy.event_date)}</p>
           <p className='secondary'>Адрес: {vacancy.address }</p>
 
         </div>

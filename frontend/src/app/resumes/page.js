@@ -20,7 +20,7 @@ export default function ResumePage() {
       <div className='container'>
         <div className='flex flex-ai-c flex-js-sb ptb7'>
             <h1>Мои Резюме</h1>
-            <Link className='button button-secondary-bordered' href="/create-resume">Создать резюме</Link>
+            {/* <Link className='button button-secondary-bordered' href="/create-resume">Создать резюме</Link> */}
         </div>   
         
         <MyResumes resumes={resumes}/>  
