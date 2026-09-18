@@ -77,7 +77,7 @@ export const acceptApply = (applyId) => (dispatch) => {
 
 export const declineApply = (id) => (dispatch) => {
   axios.put(`${END_POINT}/api/applies/decline/employee`, {applyId: id}).then(res => {        
-    dispatch(setApplyStatus({applyId, status: "DECLINED"}))
+    dispatch(setApplyStatus({applyId: id, status: "DECLINED"}))
   }).catch(e => {  
     console.log(e);
   })

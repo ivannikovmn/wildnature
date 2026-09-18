@@ -6,9 +6,9 @@ const isEmployee = async (req, res, next) => {
         const role = await Role.findByPk(req.user.roleId)
 
         if(role.name === "employee" ) next()
-        else res.status(403).send({message: "Access deinided"})
+        else res.status(403).send({message: "Доступ запрещён"})
     }
-    else res.status(403).send ({message: "Unauthorized"})
+    else res.status(403).send ({message: "Необходима авторизация"})
 }
 
 const isManager = async (req, res, next) => {
@@ -16,9 +16,9 @@ const isManager = async (req, res, next) => {
         const role = await Role.findByPk(req.user.roleId)
 
         if(role.name === "manager" ) next()
-        else res.status(403).send({message: "Access deinided"})
+        else res.status(403).send({message: "Доступ запрещён"})
     }
-    else res.status(403).send ({message: "Unauthorized"})
+    else res.status(403).send ({message: "Необходима авторизация"})
 }
 
 const validateSignUp = async (req, res, next) => {

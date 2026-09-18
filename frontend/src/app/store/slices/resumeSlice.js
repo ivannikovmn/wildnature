@@ -38,7 +38,7 @@ export const getMyResumes = () => async (dispatch) => {
         console.log(res.data);
         dispatch(setMyResumes({resumes: res.data}))        
     }catch(e){
-        alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+        alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
     }
     
 }
@@ -50,7 +50,7 @@ export const getResumeById = (id) => async (dispatch) => {
       console.log(res.data);
       dispatch(setResume({resume: res.data}))        
   } catch(e) {
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+      alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }
   
 }
@@ -64,7 +64,7 @@ export const createResume = (sendData, router) => async (dispatch) => {
         dispatch(appendResume({newresume: res.data}))     
     }catch(e){
       console.log(e);
-        alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+        alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
     }  
 }
 
@@ -74,7 +74,7 @@ export const editResume = (sendData, router) => async (dispatch) => {
       router.push("/resumes")      
   }catch(e){
     console.log(e);
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+      alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }  
 }
 
@@ -84,7 +84,7 @@ export const deleteResume = (id) => async (dispatch) => {
       dispatch(handleDeleteResume(id))
   }catch(e){
     console.log(e);
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+      alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }  
 }
 

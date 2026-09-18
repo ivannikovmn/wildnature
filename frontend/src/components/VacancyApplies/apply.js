@@ -11,7 +11,7 @@ export default function Apply ({item}) {
         <Link className='link' href={`/resumes/${item.resume.id}`}>{item.resume.first_name} {item.resume.last_name}</Link>        
 
         <div className='flex'>
-            {item.status !=="ATTENDED" && <button className='button button-primary mr4' onClick={()=>dispatch(acceptApply(item.id))}>Присуствовал</button>}
+            {item.status !=="ATTENDED" && <button className='button button-primary mr4' onClick={()=>dispatch(acceptApply(item.id))}>Присутствовали</button>}
             {item.status !=="DECLINED" && <button className='button button-secondary' onClick={()=>dispatch(declineApply(item.id))}>Отказать</button>}
         </div>
 

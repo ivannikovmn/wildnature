@@ -32,11 +32,11 @@ const verifyCode = async (req, res) => {
     })
 
     if(!authCode) {
-        res.status(401).send({error: "code is invalid"});
+        res.status(401).send({error: "Неверный код"});
     } else if(new Date(authCode.valid_till).getTime() < Date.now()){
-        res.status(401).send({error: "code is invalid"});
+        res.status(401).send({error: "Неверный код"});
     } else if(authCode.code !== req.body.code){
-        res.status(401).send({error: "code is invalid"});
+        res.status(401).send({error: "Неверный код"});
     }
     else {
 
@@ -101,7 +101,7 @@ const signUp = async (req, res) => {
 
 const logIn = async (req, res) => {
     if(!req.body.email || req.body.email.length === 0 || !req.body.password || req.body.password.length === 0){
-        res.status(401).send({message: "Bad Credentials"})
+        res.status(401).send({message: "Неверный email или пароль"})
     } else{
 
         const user = await User.findOne({
@@ -110,7 +110,7 @@ const logIn = async (req, res) => {
             }
         })
 
-        if(!user) return res.status(401).send({message: "User with that email is not exists"})
+        if(!user) return res.status(401).send({message: "Пользователь с таким email не найден"})
 
         const isMatch = await bcrypt.compare(req.body.password, user.password)
 
@@ -131,7 +131,7 @@ const logIn = async (req, res) => {
 
             res.status(200).send({token});
         } else {
-            res.status(401).send({message: "Password is incorrect"})
+            res.status(401).send({message: "Неверный пароль"})
         }
     }
 }

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
 import logo from '../../images/logo.png'
+import Link from 'next/link'
 
 export default function EmployerSignin() {
 
@@ -31,13 +32,14 @@ export default function EmployerSignin() {
   return (
     <main className='bg'>
         <div className='container'>
-            <div className='auth-header'>
-                <Image src={logo} alt="WildNature Volunteers" />  
-                {/* <img src="/images/logo.svg" /> */}
+            <div className='auth-header'>                
+                <Link href="/">                            
+                    <Image src={logo} alt="WildNature Volunteers" />                               
+                </Link>                                     
                 <p>
                     Зарегистрируйтесь сейчас, 
                     чтобы получить доступ к базе участников или
-                    публикцию мероприятий - все
+                    публикацию мероприятий - все
                     акции уже ждут вас в разделе
                     "Помощь"
                 </p>
@@ -50,7 +52,7 @@ export default function EmployerSignin() {
                   <h1>Вход для поиска участников</h1>                  
                   <form>
                       <input className="input" placeholder="Введите email" value={email} onChange={(e)=>setEmail(e.target.value)}/>                      
-                      <input className="input" placeholder="Введите пароль" value={password} onChange={(e)=>setPassword(e.target.value)}/>                      
+                      <input type="password" className="input" placeholder="Введите пароль" value={password} onChange={(e)=>setPassword(e.target.value)}/>                      
                       <button className="button button-primary" onClick={handleSignup} type="button">Войти</button>
                   </form>
                   {error && Object.keys(error).map(key => (<p className="error" key="key"> { error[key] } </p>))}

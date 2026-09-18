@@ -19,7 +19,7 @@ const isAuthorOfApply = async (req, res, next) => {
 
         const apply = await Apply.findByPk(id)
 
-        if(!apply) res.status(400).send({message: "apply with that id is not exist"})
+        if(!apply) res.status(400).send({message: "Отклик с таким идентификатором не найден"})
         else {
             const resumes = await Resume.findAll({
                 where: {
@@ -32,7 +32,7 @@ const isAuthorOfApply = async (req, res, next) => {
                 next()
             } else {
                 res.status(403).send({
-                    message: "Access Forbiden"
+                    message: "Доступ запрещён"
                 })
             }
         }
@@ -47,7 +47,7 @@ const isApplyExists = async (req, res, next) => {
 
         if (!apply) {
             return res.status(400).send({
-                message: "apply with that id is not exist"
+                message: "Отклик с таким идентификатором не найден"
             })
         }
 

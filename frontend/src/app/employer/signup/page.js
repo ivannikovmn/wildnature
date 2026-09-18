@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/navigation";
 import Image from 'next/image'
 import logo from '../../images/logo.png'
-
+import Link from 'next/link'
 
 
 export default function EmployerSignup() {
@@ -50,12 +50,13 @@ export default function EmployerSignup() {
     <main className='bg'>
         <div className='container'>
             <div className='auth-header'>
-                <Image src={logo} alt="WildNature Volunteers" />  
-                {/* <img src="/images/logo.svg" /> */}
+                <Link href="/">                            
+                    <Image src={logo} alt="WildNature Volunteers" />                               
+                </Link>  
                 <p>
                     Зарегистрируйтесь сейчас, 
                     чтобы получить доступ к базе участников или
-                    публикцию мероприятий - все
+                    публикацию мероприятий - все
                     акции уже ждут вас в разделе
                     "Помощь"
                 </p>
@@ -66,7 +67,7 @@ export default function EmployerSignup() {
             <section className="login-page">            
             {step === 1 && <div className="card">
                   <h1>Регистрация для поиска участников</h1>
-                  <p>В завершении на почту придет пароль</p>
+                  <p>После регистрации вы сможете перейти в свой профиль</p>
                   <form>
                       <input className="input" placeholder="Введите email" value={email} onChange={(e)=>setEmail(e.target.value)}/>                      
                       <button className="button button-primary" onClick={()=>setStep(2)}>Продолжить</button>

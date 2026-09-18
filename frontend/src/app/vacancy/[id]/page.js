@@ -66,7 +66,8 @@ export default function VacancyPage() {
       <main>
         <Header />
         <div className='container'>
-          {mounted && currentUser && currentUser.id === vacancy.userId && <div className='flex flex-ai-c flex-js-sb ptb7'>            
+          {mounted && currentUser && currentUser.id === vacancy.userId && <div className='flex flex-ai-c flex-js-sb ptb7'>     
+              <Link className='link' href="/vacancy">К списку мероприятий</Link>         
               <Link className='button button-secondary-bordered' href={`/edit-vacancy/${vacancy.id}`}>Редактировать</Link>
           </div>}
           <div className='card mt7'>

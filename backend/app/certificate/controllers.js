@@ -15,7 +15,7 @@ const getCertificate = async (req, res) => {
 
         if (!resume) {
             return res.status(404).send({
-                message: 'Resume not found'
+                message: 'Резюме не найдено'
             })
         }
 
@@ -29,7 +29,7 @@ const getCertificate = async (req, res) => {
 
         if (!apply) {
             return res.status(404).send({
-                message: 'Certificate is not available'
+                message: 'Сертификат недоступен'
             })
         }
 
@@ -37,7 +37,7 @@ const getCertificate = async (req, res) => {
 
         if (!vacancy) {
             return res.status(404).send({
-                message: 'Vacancy not found'
+                message: 'Мероприятие не найдено'
             })
         }
 

@@ -37,8 +37,7 @@ export const getMyVacancies = () => async (dispatch) => {
         const res = await axios.get(`${END_POINT}/api/vacancy`);        
         dispatch(setVacancies({vacancies: res.data}))       
     }catch(e){
-        alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-        // alert("GET MY VACANCIES ERROR")
+        alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")        
     }    
 }
 
@@ -47,11 +46,7 @@ export const getVacancyById = (id) => async (dispatch) => {
       const res = await axios.get(`${END_POINT}/api/vacancy/${id}`);
       dispatch(setVacancy({vacancy: res.data}))        
   } catch(e) {
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-    // console.log("GET VACANCY BY ID ERROR:", e)
-    // console.log("STATUS:", e.response?.status)
-    // console.log("DATA:", e.response?.data)
-    // alert("GET VACANCY BY ID ERROR")
+      alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }
 }
 
@@ -74,8 +69,7 @@ export const createVacancy = (sendData, router) => async (dispatch) => {
         router.push("/vacancy")
     } catch(e) {
         console.log(e)
-        alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
-        // alert("CREATE VACANCY ERROR")
+        alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")        
     }
 }
 
@@ -99,7 +93,7 @@ export const editVacancy = (sendData, router) => async (dispatch) => {
     router.push("/vacancy")
   } catch(e) {
     console.log(e)
-    alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+    alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }
 }
 export const deleteVacancy = (id) => async (dispatch) => {  
@@ -108,7 +102,7 @@ export const deleteVacancy = (id) => async (dispatch) => {
       dispatch(handleDeleteVacancy(id))
   }catch(e){
     console.log(e);
-      alert("Что-то пошло не так, сообщите об ошибки тех спецам сайта!")
+      alert("Что-то пошло не так, сообщите об ошибке тех спецам сайта!")
   }  
 }
 

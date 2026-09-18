@@ -18,10 +18,10 @@ const isAuthorOfResume = async (req, res, next) => {
 
     const resume = await Resume.findByPk(id)
 
-    if(!resume) res.status(400).send({message: "Resume with that id is not exist"})
+    if(!resume) res.status(400).send({message: "Резюме с таким идентификатором не найдено"})
     // if(resume && req.user.id === resume.userId) next();
     else if(resume && req.user.id === resume.userId) next();
-    else res.status(403).send({message: "Access Forbiden"})
+    else res.status(403).send({message: "Доступ запрещён"})
 }
 
 

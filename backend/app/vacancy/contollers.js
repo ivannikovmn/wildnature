@@ -38,7 +38,7 @@ const getVacancy = async (req, res) => {
 
     if(vacancy)
         res.status(200).send(vacancy)
-    else res.status(404).send({message: "Vacancy with that id is not found"})
+    else res.status(404).send({message: "Мероприятие с таким идентификатором не найдено"})
 }
 
 const deleteVacancy = async (req, res) => {    

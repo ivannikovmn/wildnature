@@ -23,12 +23,12 @@ const isAuthorVacancy = async (req, res, next) => {
     const vacancy = await Vacancy.findByPk(id);
 
     if (!vacancy) {
-        res.status(400).send({message: "Vacancy with that id is not exist"})
+        res.status(400).send({message: "Мероприятие с таким идентификатором не найдено"})
     }
     else if(vacancy.userId === req.user.id) {
         next()
     } else {
-        res.status(403).send({message: "Access Forbiden"})
+        res.status(403).send({message: "Доступ запрещён"})
     }
 }
 

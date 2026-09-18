@@ -27,7 +27,8 @@ export default function Header() {
                     <div>                       
                         <Link href="/">                            
                             <Image src={logo} alt="WildNature Volunteers" />                               
-                        </Link>                                                                          
+                        </Link>           
+                                                                                       
                         {mounted && currentUser && currentUser.role && currentUser.role.name === "manager" && (
                             <Link href="/vacancy">Мои мероприятия</Link>
                         )}
