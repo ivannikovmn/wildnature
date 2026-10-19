@@ -1,7 +1,7 @@
 'use client'
 import Header from '@/components/header'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useSyncExternalStore } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getVacancyById } from '@/app/store/slices/vacancySlice'
 import { useParams } from 'next/navigation'
@@ -11,32 +11,33 @@ import { getMyResumes } from '@/app/store/slices/resumeSlice'
 import { createApply, getEmployeeApplies, getVacancyApplies } from '@/app/store/slices/applySlice'
 import { formatDateTime } from '@/app/utils/format'
 
+const subscribe = () => () => {}
+const getSnapshot = () => true
+const getServerSnapshot = () => false
+
 export default function VacancyPage() {
 
     const dispatch = useDispatch();
     const {id} = useParams();
     const vacancy = useSelector(state => state.vacancy.vacancy)
     const currentUser = useSelector(state => state.auth.currentUser)
-    const [mounted, setMounted] = useState(false)
+    const mounted = useSyncExternalStore(
+        subscribe,
+        getSnapshot,
+        getServerSnapshot
+    )
 
     const resumes = useSelector(state => state.resume.resumes)
     const applies = useSelector(state => state.apply.applies)
 
     const [resumeId, setResume] = useState()
-    console.log(resumes);
-    useEffect(() => {
-    if(resumes[0]) {
-        setResume(resumes[0].id)      
-    }
-    }, [resumes])    
+    const selectedResumeId = resumeId ?? resumes[0]?.id
 
-    useEffect(() => {
-        setMounted(true)
-    }, [])
-    
+
+
   useEffect(() => {
       dispatch(getVacancyById(id))
-  }, [id])
+  }, [dispatch, id])
 
   useEffect(() => {
       if (!currentUser) return
@@ -47,27 +48,27 @@ export default function VacancyPage() {
       } else {
           dispatch(getVacancyApplies(id))
       }
-  }, [currentUser, id])
+  }, [currentUser, dispatch, id])
 
   console.log("in page", vacancy);
 
   const handleApply = () => {
     dispatch(createApply({
-      resumeId,
+      resumeId: selectedResumeId,
       vacancyId: id
     }))
   }
 
   let isApplied = applies.some(item => item.vacancyId === id * 1);
 
-  console.log(isApplied, applies);  
+  console.log(isApplied, applies);
 
   return (
       <main>
         <Header />
         <div className='container'>
-          {mounted && currentUser && currentUser.id === vacancy.userId && <div className='flex flex-ai-c flex-js-sb ptb7'>     
-              <Link className='link' href="/vacancy">К списку мероприятий</Link>         
+          {mounted && currentUser && currentUser.id === vacancy.userId && <div className='flex flex-ai-c flex-js-sb ptb7'>
+              <Link className='link' href="/vacancy">К списку мероприятий</Link>
               <Link className='button button-secondary-bordered' href={`/edit-vacancy/${vacancy.id}`}>Редактировать</Link>
           </div>}
           <div className='card mt7'>
@@ -89,7 +90,7 @@ export default function VacancyPage() {
 
               {
                 mounted && currentUser && currentUser.role.name === 'employee' && (
-                  <select className='input mtb4' value={resumeId} onChange={(e) => setResume(e.target.value)} style={{maxWidth: `200px`}}>
+                  <select className='input mtb4' value={selectedResumeId ?? ""} onChange={(e) => setResume(e.target.value)} style={{maxWidth: `200px`}}>
                     {resumes.map(item =>(<option key={item.id} value={item.id}>{item.first_name} {item.last_name}</option>))}
                   </select>
                 )
@@ -97,17 +98,17 @@ export default function VacancyPage() {
 
               {mounted && currentUser && currentUser.id !== vacancy.userId && !isApplied && <button className='button button-primary' onClick={handleApply}>Откликнуться</button>}
               {mounted && currentUser && currentUser.id !== vacancy.userId && isApplied && <Link className='button button-primary' style={{maxWidth: `200px`}} href="/applies">Смотреть отклик</Link>}
-              
+
           </div>
           {vacancy.company && <p className='secondary mt7'><b>{vacancy.company.name}</b></p>}
           {vacancy.company && <p className='secondary'>{vacancy.company.description}</p>}
-          
+
           <p className='secondary' dangerouslySetInnerHTML={{ __html:vacancy.description}}></p>
 
           <p className='secondary'>Дата: {formatDateTime(vacancy.event_date)}</p>
           <p className='secondary'>Адрес: {vacancy.address }</p>
 
         </div>
-      </main>    
+      </main>
   )
 }

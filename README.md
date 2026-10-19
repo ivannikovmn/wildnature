@@ -125,6 +125,26 @@ Backend:
 https://wildnature-backend.imn.kz
 ```
 
+## Testing
+
+### Frontend unit tests
+
+Run unit tests with Vitest:
+
+```bash
+cd frontend
+npm test
+```
+
+### Frontend E2E tests
+
+Run E2E tests with Playwright:
+
+```bash
+cd frontend
+npm run test:e2e
+```
+
 ## Documentation
 
 * ER Diagram: https://www.figma.com/board/q4fS21cwD6nMcJ8QVx9WVN/WildNature-Database
@@ -151,3 +171,5 @@ Postman collection:
 * Dotenv
 * Nodemon + Morgan
 * PM2 (process manager, production deployment)
+* Vitest (frontend unit tests)
+* Playwright (E2E testing)

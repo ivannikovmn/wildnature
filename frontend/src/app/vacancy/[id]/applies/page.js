@@ -13,9 +13,11 @@ export default function VacancyApplies() {
   const [status, setStatus] = useState("NEW")
 
   const {id} = useParams();    
-  useEffect(() => {
-    dispatch(getVacancyApplies(id))
-  }, [])
+    useEffect(() => {
+    if (id) {
+        dispatch(getVacancyApplies(id))
+    }
+    }, [dispatch, id])
 
   const applies = useSelector(state => state.apply.applies)
 

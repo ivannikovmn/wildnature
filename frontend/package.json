@@ -6,7 +6,9 @@
     "dev": "next dev -p 3011",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "vitest run",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^11.2.0",
@@ -20,7 +22,9 @@
     "react-redux": "^9.3.0"
   },
   "devDependencies": {
+    "@playwright/test": "^1.64.1",
     "eslint": "^9",
-    "eslint-config-next": "16.3.3"
+    "eslint-config-next": "16.3.3",
+    "vitest": "^5.0.5"
   }
 }
