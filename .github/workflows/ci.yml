@@ -45,6 +45,8 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run E2E tests
+        env:
+          NEXT_PUBLIC_API_URL: https://wildnature-backend.imn.kz
         run: npm run test:e2e
 
       - name: Build application
