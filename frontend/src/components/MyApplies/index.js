@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import MyApply from "./apply.js";
 import { useSelector } from "react-redux";
+import Image from "next/image";
 
     export default function MyApplies () {      
 
@@ -61,13 +62,13 @@ import { useSelector } from "react-redux";
 
     <div className="row row-header flex">
         <div className={`col ${sortDirection}`} onClick={() => sortBy('status')}>
-            Статус {sortKey === "status" && <img src="/images/arrow-right.svg" />}
+            Статус {sortKey === "status" && <Image src="/images/arrow-right.svg" alt="" width={16} height={16} />}
         </div>
         <div className={`col ${sortDirection}`} onClick={() => sortBy('vacancy')}>
-            Мероприятие {sortKey === "vacancy" && <img src="/images/arrow-right.svg" />}
+            Мероприятие {sortKey === "vacancy" && <Image src="/images/arrow-right.svg" alt="" width={16} height={16} />}
         </div>  
         <div className={`col ${sortDirection}`} onClick={() => sortBy('updatedAt')}>
-            Дата {sortKey === "updatedAt" && <img src="/images/arrow-right.svg" />}
+            Дата {sortKey === "updatedAt" && <Image src="/images/arrow-right.svg" alt="" width={16} height={16} />}
         </div>               
     </div>        
         {showApplies}
