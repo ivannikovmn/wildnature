@@ -155,16 +155,46 @@ Postman collection:
 
 * `wildnature.postman_collection.json`
 
+## Redis and Email Worker
+
+Start Redis from the project root:
+
+```bash
+docker compose -f backend/docker-compose.redis.yml up -d
+docker exec wildnature-redis redis-cli ping
+```
+
+Expected response: `PONG`.
+
+Start the email worker from the backend directory:
+
+```bash
+cd backend
+node app/utils/emailWorker.js
+```
+
+The worker processes queued email notifications and retries failed jobs
+according to the BullMQ queue configuration. Ensure the backend `.env`
+contains `MAIL_USER` and `MAIL_PASSWORD`.
+
+In production, run the worker as a separate PM2 process:
+
+```bash
+cd backend
+pm2 start app/utils/emailWorker.js --name wildnature-email-worker
+pm2 save
+```
 ## Stack
 
-* Docker + PostgreSQL
+* Docker + PostgreSQL + Redis
 * Node.js + Express (REST API with CORS)
 * Next.js + React
 * Redux Toolkit
 * Axios
 * Sequelize ORM
 * Passport + JWT
-* Nodemailer
+* Nodemailer (email delivery via Gmail SMTP)
+* BullMQ + ioredis (background email jobs with retries)
 * Bcrypt
 * Multer
 * CKEditor 5

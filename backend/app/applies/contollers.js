@@ -1,6 +1,7 @@
 const Apply = require('./Apply')
 const {NEW, DECLINED, ATTENDED} = require('./utils')
 const sendEmail = require('../utils/sendMail')
+const emailQueue = require('../utils/emailQueue')
 const Vacancy = require('../vacancy/models/Vacancy')
 const Resume = require('../resume/models/Resume')
 const User = require('../auth/User')
@@ -18,10 +19,14 @@ const createApply = async (req, res) => {
         const resume = await Resume.findByPk(req.body.resumeId)
         const vacancy = await Vacancy.findByPk(req.body.vacancyId)
         const user = await User.findByPk(vacancy.userId)
-        sendEmail(user.email, `Новый отклик на мероприятие ${vacancy.name}`, `
+        await emailQueue.add('new-apply-notification', {
+            to: user.email,
+            subject: `Новый отклик на мероприятие ${vacancy.name}`,
+            text: `
         Имя участника: ${resume.first_name}
-        Фамилия участника: ${resume.last_name}        
-        `)
+        Фамилия участника: ${resume.last_name}
+        `,
+        })
 
         res.status(200).send(apply)        
     } catch (error) {
