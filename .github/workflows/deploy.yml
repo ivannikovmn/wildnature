@@ -1,0 +1,175 @@
+name: WildNature Deploy
+
+on:
+  workflow_run:
+    workflows: ["WildNature CI"]
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wildnature-production-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    name: Deploy production release
+    if: >-
+      ${{
+        github.event.workflow_run.conclusion == 'success' &&
+        github.event.workflow_run.event == 'push' &&
+        github.event.workflow_run.head_branch == 'main'
+      }}
+    runs-on: [self-hosted, Linux, X64]
+    timeout-minutes: 30
+
+    steps:
+      - name: Prepare and activate release
+        shell: bash
+        env:
+          TARGET_SHA: ${{ github.event.workflow_run.head_sha }}
+        run: |
+          set -Eeuo pipefail
+
+          REPO=/home/localadmin/imn.kz/wildnature
+          ROOT=/home/localadmin/deploy/wildnature
+          RELEASES="$ROOT/releases"
+          SHARED="$ROOT/shared"
+          NODE=/home/localadmin/.nvm/versions/node/v24.16.0/bin
+          PM2=/usr/local/bin/pm2
+
+          cd "$REPO"
+
+          if [[ -n "$(git status --porcelain)" ]]; then
+            echo "Deployment stopped: repository working tree is not clean." >&2
+            git status --short
+            exit 1
+          fi
+
+          git fetch origin main
+
+          if [[ "$(git rev-parse origin/main)" != "$TARGET_SHA" ]]; then
+            echo "Skipping stale CI run: target is no longer origin/main."
+            exit 0
+          fi
+
+          if ! git cat-file -e "$TARGET_SHA^{commit}"; then
+            echo "Target commit is unavailable locally." >&2
+            exit 1
+          fi
+
+          RELEASE="$RELEASES/$TARGET_SHA"
+          PREVIOUS_RELEASE="$(readlink -f "$ROOT/current" || true)"
+          ACTIVATED=false
+
+          if [[ "$PREVIOUS_RELEASE" == "$RELEASE" ]]; then
+            echo "Target release is already active."
+            exit 0
+          fi
+
+          if [[ -e "$RELEASE" ]]; then
+            echo "Release directory already exists; refusing to overwrite it." >&2
+            exit 1
+          fi
+
+          cleanup() {
+            local status=$?
+            set +e
+
+            if [[ "$status" -ne 0 ]]; then
+              if [[ "$ACTIVATED" == true && -n "$PREVIOUS_RELEASE" && -d "$PREVIOUS_RELEASE" ]]; then
+                echo "Deployment failed. Rolling back to $PREVIOUS_RELEASE" >&2
+                rm -f "$ROOT/current.rollback"
+                ln -s "$PREVIOUS_RELEASE" "$ROOT/current.rollback"
+                mv -Tf "$ROOT/current.rollback" "$ROOT/current"
+                "$PM2" restart wildnature-backend --update-env
+                "$PM2" restart wildnature-frontend --update-env
+                "$PM2" restart wildnature-email-worker --update-env
+              fi
+
+              if [[ -d "$RELEASE" ]] &&
+                 [[ "$(readlink -f "$ROOT/current" || true)" != "$RELEASE" ]]; then
+                rm -rf -- "$RELEASE"
+              fi
+            fi
+          }
+          trap cleanup EXIT
+
+          mkdir -p "$RELEASES"
+          mkdir "$RELEASE"
+
+          git archive "$TARGET_SHA" | tar -x -C "$RELEASE"
+
+          # Attach runtime configuration and uploaded files.
+          rm -f "$RELEASE/backend/.env"
+          ln -s "$SHARED/backend.env" "$RELEASE/backend/.env"
+
+          rm -f "$RELEASE/frontend/.env.production"
+          ln -s "$SHARED/frontend.env.production" "$RELEASE/frontend/.env.production"
+
+          rm -rf "$RELEASE/backend/public"
+          ln -s "$SHARED/public" "$RELEASE/backend/public"
+
+          # Build the release without changing the active one.
+          cd "$RELEASE/backend"
+          "$NODE/npm" ci
+
+          cd "$RELEASE/frontend"
+          "$NODE/npm" ci
+          NEXT_PUBLIC_API_URL=https://wildnature-backend.imn.kz \
+            "$NODE/npm" run build
+
+          # Atomically switch the active release.
+          rm -f "$ROOT/current.next"
+          ln -s "$RELEASE" "$ROOT/current.next"
+          mv -Tf "$ROOT/current.next" "$ROOT/current"
+          ACTIVATED=true
+
+          # Restart all application processes against the new release.
+          "$PM2" restart wildnature-backend --update-env
+          "$PM2" restart wildnature-frontend --update-env
+          "$PM2" restart wildnature-email-worker --update-env
+
+          # Verify PM2 and HTTP responses before declaring success.
+          for app in wildnature-backend wildnature-frontend wildnature-email-worker; do
+            "$PM2" describe "$app" | grep -q online
+          done
+
+          wait_for_http() {
+            local url="$1"
+            local attempts="$2"
+            local code
+
+            for ((i = 1; i <= attempts; i++)); do
+              code="$(curl -sS -o /dev/null -w '%{http_code}' --max-time 10 "$url" 2>/dev/null || true)"
+              if [[ "$code" =~ ^[23][0-9][0-9]$ ]] ||
+                 { [[ "$url" == "http://127.0.0.1:3000/" ]] &&
+                   [[ "$code" =~ ^4[0-9][0-9]$ ]]; }; then
+                echo "$url responded with HTTP $code"
+                return 0
+              fi
+              sleep 2
+            done
+
+            echo "Health check failed: $url (last HTTP code: ${code:-none})" >&2
+            return 1
+          }
+
+          wait_for_http http://127.0.0.1:3000/ 10
+          wait_for_http http://127.0.0.1:3001/ 15
+
+          # Keep the three most recently created releases.
+          cd "$RELEASES"
+          find . -mindepth 1 -maxdepth 1 -type d -printf '%T@ %p\n' \
+            | sort -nr \
+            | tail -n +4 \
+            | cut -d' ' -f2- \
+            | while IFS= read -r old_release; do
+                [[ -n "$old_release" ]] || continue
+                [[ "$RELEASES/$old_release" == "$RELEASE" ]] && continue
+                rm -rf -- "$RELEASES/$old_release"
+              done
+
+          echo "Deployment successful: $TARGET_SHA"

@@ -184,6 +184,22 @@ cd backend
 pm2 start app/utils/emailWorker.js --name wildnature-email-worker
 pm2 save
 ```
+
+## Continuous Deployment
+
+GitHub Actions runs CI checks on pushes to `main`. After a successful CI
+run for the latest commit on `main`, a self-hosted runner on the production
+server prepares a separate release from that exact commit.
+
+Releases are stored in `deploy/wildnature/releases/<commit-sha>`.
+The active release is selected through the `current` symlink, while runtime
+configuration and uploaded files are kept in a shared directory.
+
+The new release is built before activation. After switching `current`,
+the deployment restarts the backend, frontend, and email worker, then checks
+their status and HTTP responses. If a check fails, it attempts to restore
+the previous release. The three most recently created releases are retained.
+
 ## Stack
 
 * Docker + PostgreSQL + Redis
