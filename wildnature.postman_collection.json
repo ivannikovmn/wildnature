@@ -19,7 +19,7 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "local_host@mail.ru",
+									"value": "{{sendVerificationEmail_EMAIL}}",
 									"type": "text"
 								},
 								{
@@ -54,12 +54,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "local_host@mail.ru",
+									"value": "{{sendVerificationEmail_EMAIL}}",
 									"type": "text"
 								},
 								{
 									"key": "code",
-									"value": "WildNature1787579219989",
+									"value": "WildNature1789131852255",
 									"type": "text"
 								}
 							]
@@ -91,7 +91,7 @@
 							"formdata": [
 								{
 									"key": "email",
-									"value": "manager@example.com",
+									"value": "{{signUpManager_EMAIL}}",
 									"type": "text"
 								},
 								{
@@ -101,12 +101,12 @@
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "{{signUpManager_PASSWORD}}",
 									"type": "text"
 								},
 								{
 									"key": "password2",
-									"value": "123",
+									"value": "{{signUpManager_PASSWORD}}",
 									"type": "text"
 								},
 								{
@@ -155,12 +155,12 @@
 							"urlencoded": [
 								{
 									"key": "email",
-									"value": "manager@example.com",
+									"value": "{{signUpManager_EMAIL}}",
 									"type": "text"
 								},
 								{
 									"key": "password",
-									"value": "123",
+									"value": "{{signUpManager_PASSWORD}}",
 									"type": "text"
 								}
 							]
@@ -294,14 +294,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/resume/4",
+							"raw": "{{END_POINT}}/api/resume/7",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
 								"resume",
-								"4"
+								"7"
 							]
 						}
 					},
@@ -514,14 +514,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/vacancy/9",
+							"raw": "{{END_POINT}}/api/vacancy/3",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
 								"vacancy",
-								"9"
+								"3"
 							]
 						}
 					},
@@ -581,12 +581,12 @@
 							"urlencoded": [
 								{
 									"key": "resumeId",
-									"value": "1",
+									"value": "8",
 									"type": "text"
 								},
 								{
 									"key": "vacancyId",
-									"value": "3",
+									"value": "4",
 									"type": "text"
 								}
 							]
@@ -649,14 +649,14 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/applies/1",
+							"raw": "{{END_POINT}}/api/applies/5",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"api",
 								"applies",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -758,7 +758,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/api/applies/vacancy/2",
+							"raw": "{{END_POINT}}/api/applies/vacancy/4",
 							"host": [
 								"{{END_POINT}}"
 							],
@@ -766,7 +766,7 @@
 								"api",
 								"applies",
 								"vacancy",
-								"2"
+								"4"
 							],
 							"query": [
 								{
@@ -785,14 +785,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{END_POINT}}/certificate/3/9",
+							"raw": "{{END_POINT}}/certificate/1/4",
 							"host": [
 								"{{END_POINT}}"
 							],
 							"path": [
 								"certificate",
-								"3",
-								"9"
+								"1",
+								"4"
 							]
 						}
 					},
@@ -821,17 +821,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "END_POINT",
-			"value": "http://localhost:3000",
-			"type": "string"
-		},
-		{
-			"key": "AUTH_TOKEN",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwiZW1haWwiOiJxYXNocWFpLjIwMDhAbWFpbC5ydSIsImZ1bGxfbmFtZSI6Ik1pa2hhaWwgSXZhbm5pa292IiwicGhvbmUiOm51bGwsInJvbGUiOnsiaWQiOjIsIm5hbWUiOiJtYW5hZ2VyIn0sImlhdCI6MTc4NzU4OTk2OCwiZXhwIjoxODE5MTI1OTY4fQ.Id1s0UpQvDT9aQBp3uTUZRPIQ9eU9g826JgQvhSDQvI"
 		}
 	]
 }
