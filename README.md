@@ -98,8 +98,8 @@ The frontend runs as a separate PM2 process on port `3001`.
 
 ### Production URLs
 
-- Frontend: https://wildnature.imn.kz
-- Backend: https://wildnature-backend.imn.kz
+- Frontend: [https://wildnature.imn.kz](https://wildnature.imn.kz)
+- Backend: [https://wildnature-backend.imn.kz](https://wildnature-backend.imn.kz)
 
 ### Process Management
 
@@ -141,25 +141,13 @@ Postman collection:
 
 ## Redis and Email Worker
 
-WildNature provides shared Redis infrastructure used by WildNature and IMN Education for background email processing.
+WildNature uses Redis and BullMQ for asynchronous email processing.
 
-Redis runs in a Docker container and is available locally at `127.0.0.1:6379`.
+The project has its own BullMQ queue:
 
-Both applications currently use the BullMQ queue `wildnature-email`. Email jobs are processed by the WildNature email worker.
+- `wildnature-email`
 
-Start Redis from the project root:
-
-```bash
-docker compose -f backend/docker-compose.redis.yml up -d
-```
-
-Check Redis availability:
-
-```bash
-docker exec wildnature-redis redis-cli ping
-```
-
-Expected response: `PONG`.
+Email jobs are processed by a dedicated worker.
 
 Start the email worker manually from the backend directory:
 
